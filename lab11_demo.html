@@ -1,0 +1,76 @@
+<html>
+<head>
+    <!--Load the AJAX API-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+    // Load the Visualization API and the piechart package.
+    google.load('visualization', '1.0', {'packages':['corechart']});
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+
+        var public_key = '9Jbb3naY9ZFz2nWRo50g';
+
+        // JSONP request
+        var jsonData = $.ajax({
+            url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+            data: {page: 1},
+            dataType: 'jsonp',
+        }).done(function (results) {
+
+            $("#loading").text("Parsing data ...");
+
+            var ldata = new google.visualization.DataTable();
+            ldata.addColumn('datetime', 'Time');
+            ldata.addColumn('number', '-Light sensor voltage');
+
+            var tdata = new google.visualization.DataTable();
+            tdata.addColumn('datetime', 'Time');
+            tdata.addColumn('number', 'Temperature (C)');
+
+            $.each(results, function (i, row) {
+                ldata.addRow([
+                    (new Date(row.timestamp)),
+                    -parseFloat(row.light)]);
+                tdata.addRow([
+                    (new Date(row.timestamp)),
+                    parseFloat(row.temp)
+                ]);
+            });
+
+            $("#loading").hide();
+
+            var lchart = new google.visualization.LineChart($('#light_chart').get(0));
+            lchart.draw(ldata, {
+                title: 'CC3501 Data Logging: Light sensor'
+            });
+
+            var tchart = new google.visualization.LineChart($('#temp_chart').get(0));
+            tchart.draw(tdata, {
+                title: 'CC3501 Data Logging: Temperature sensor'
+            });
+
+
+
+        });
+
+
+    }
+    </script>
+    </head>
+
+    <body>
+
+        <p id="loading">Downloading data from data.sparkfun.com ... (this may take a while)</p>
+        <!--Div that will hold the pie chart-->
+        <div id="light_chart"></div>
+        <div id="temp_chart"></div>
+    </body>
+    </html>
