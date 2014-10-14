@@ -18,55 +18,60 @@
 
         var public_key = '9Jbb3naY9ZFz2nWRo50g';
 
+        var ldata = new google.visualization.DataTable();
+        ldata.addColumn('datetime', 'Time');
+        ldata.addColumn('number', '-Light sensor voltage');
+
+        var tdata = new google.visualization.DataTable();
+        tdata.addColumn('datetime', 'Time');
+        tdata.addColumn('number', 'Temperature (C)');
+
         // JSONP request
-        var jsonData = $.ajax({
-            url: 'https://data.sparkfun.com/output/' + public_key + '.json',
-            //data: {page: 1},
-            dataType: 'jsonp',
-        }).done(function (results) {
+        function fetchJSON(page_id) {
+            $.ajax({
+                url: 'https://data.sparkfun.com/output/' + public_key + '.json',
+                data: {page: page_id},
+                dataType: 'jsonp',
+            }).done(function (results) {
 
-            $("#loading").text("Parsing data ...");
+                $("#loading").text("Downloading page " + (page_id+1));
 
-            var ldata = new google.visualization.DataTable();
-            ldata.addColumn('datetime', 'Time');
-            ldata.addColumn('number', '-Light sensor voltage');
+                $.each(results, function (i, row) {
+                    ldata.addRow([
+                        (new Date(row.timestamp)),
+                        -parseFloat(row.light)]);
+                    tdata.addRow([
+                        (new Date(row.timestamp)),
+                        parseFloat(row.temp)
+                    ]);
+                });
 
-            var tdata = new google.visualization.DataTable();
-            tdata.addColumn('datetime', 'Time');
-            tdata.addColumn('number', 'Temperature (C)');
+                if (page_id < 4) {
+                    fetchJSON(page_id + 1);
+                } else {
+                    $("#loading").hide();
+                    var lchart = new google.visualization.LineChart($('#light_chart').get(0));
+                    lchart.draw(ldata, {
+                        title: 'CC3501 Data Logging: Light sensor'
+                    });
 
-            $.each(results, function (i, row) {
-                ldata.addRow([
-                    (new Date(row.timestamp)),
-                    -parseFloat(row.light)]);
-                tdata.addRow([
-                    (new Date(row.timestamp)),
-                    parseFloat(row.temp)
-                ]);
+                    var tchart = new google.visualization.LineChart($('#temp_chart').get(0));
+                    tchart.draw(tdata, {
+                        title: 'CC3501 Data Logging: Temperature sensor'
+                    });
+                }
             });
+        }
 
-            $("#loading").hide();
-
-            var lchart = new google.visualization.LineChart($('#light_chart').get(0));
-            lchart.draw(ldata, {
-                title: 'CC3501 Data Logging: Light sensor'
-            });
-
-            var tchart = new google.visualization.LineChart($('#temp_chart').get(0));
-            tchart.draw(tdata, {
-                title: 'CC3501 Data Logging: Temperature sensor'
-            });
-
-
-
-        });
-
-
+        fetchJSON(1);
     }
     </script>
     </head>
 
     <body>
+        <p>Data is logged by a Freescale FRDM-K20D50M and a Raspberry Pi.
+            Raw data is available <a href="https://data.sparkfun.com/streams/9Jbb3naY9ZFz2nWRo50g">here</a>.</p>
+
 
         <p id="loading">Downloading data from data.sparkfun.com ... (this may take a while)</p>
         <!--Div that will hold the pie chart-->
