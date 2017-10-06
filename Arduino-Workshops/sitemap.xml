@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/materials/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/warmup/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/external-led/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/serial-output/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/sensing-the-light/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/decision-making/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/servo-motors/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/repetition-while-loop/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/repetition-for-loop/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/soil-moisture/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/digital-temperature/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/real-time-clock/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/data-logger/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/hysteresis/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/coding-and-sensors/</loc>
+  </url>
+  
+  <url>
+    <loc>/Arduino-Workshops/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

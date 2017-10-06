@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Real time clocks &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li>#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li>#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li>#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li>#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li class="active">#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li>#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Real time clocks</h1>
+  <span class="post-date">Lesson #12&mdash;Data loggers that keep time</span>
+  
+
+<h2 id="theory">Theory</h2>
+
+<p>A &ldquo;real time clock&rdquo; is a clock that keeps the date and time. It is essential
+for data loggers where measurements need to be logged against the time of day.</p>
+
+<p>Real time clocks are typically powered by coin cell batteries, allowing the
+time to be preserved even if the main power is removed. Your Arduino will stop,
+but the clock will keep ticking, and when the power comes back, your Arduino
+will be able to read the correct date and time.</p>
+
+<h2 id="wiring">Wiring</h2>
+
+<p>Insert the coin cell battery (if needed), and plug the data logger shield into
+your Arduino.</p>
+
+<h2 id="setting-the-time">Setting the time</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">// Install RTClib
+</span><span style="color:#75715e"></span><span style="">
+</span><span style=""></span><span style="color:#75715e">#include</span><span style=""> </span><span style="color:#75715e">&lt;Wire.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style=""> </span><span style="color:#75715e">&lt;RTClib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="">
+</span><span style=""></span><span style="">DS1307</span><span style=""> </span><span style="">rtc</span><span style="">;</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">setup</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="">Wire</span><span style="">.</span><span style="">begin</span><span style="">();</span><span style="">
+</span><span style="">  </span><span style="">rtc</span><span style="">.</span><span style="">begin</span><span style="">();</span><span style="">
+</span><span style="">  </span><span style="">rtc</span><span style="">.</span><span style="">adjust</span><span style="">(</span><span style="">DateTime</span><span style="">(</span><span style="">__DATE__</span><span style="">,</span><span style="">__TIME__</span><span style="">));</span><span style="">
+</span><span style=""></span><span style="">}</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style=""></span><span style="">}</span></code></pre>
+</div>
+
+<h2 id="reading-back-the-time">Reading back the time</h2>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#include</span><span style=""> </span><span style="color:#75715e">&lt;RTClib.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span><span style=""> </span><span style="color:#75715e">&lt;Wire.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="">
+</span><span style=""></span><span style="">DS1307</span><span style=""> </span><span style="">rtc</span><span style="">;</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">setup</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your setup code here, to run once:
+</span><span style="color:#75715e"></span><span style="">  
+</span><span style="">  </span><span style="">Serial</span><span style="">.</span><span style="">begin</span><span style="">(</span><span style="color:#ae81ff">9600</span><span style="">);</span><span style="">
+</span><span style="">  </span><span style="">Wire</span><span style="">.</span><span style="">begin</span><span style="">();</span><span style="">
+</span><span style="">  </span><span style="">rtc</span><span style="">.</span><span style="">begin</span><span style="">();</span><span style="">
+</span><span style=""></span><span style="">}</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your main code here, to run repeatedly:
+</span><span style="color:#75715e"></span><span style="">  </span><span style="color:#66d9ef">char</span><span style=""> </span><span style="">buf</span><span style=""> </span><span style="">[]</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;DD/MM/YYYY hh:mm:ss&#34;</span><span style="">;</span><span style="">
+</span><span style="">  </span><span style="">DateTime</span><span style=""> </span><span style="">now</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">rtc</span><span style="">.</span><span style="">now</span><span style="">();</span><span style="">
+</span><span style="">  </span><span style="">now</span><span style="">.</span><span style="">format</span><span style="">(</span><span style="">buf</span><span style="">);</span><span style="">
+</span><span style="">  </span><span style="">Serial</span><span style="">.</span><span style="">println</span><span style="">(</span><span style="">buf</span><span style="">);</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="">delay</span><span style="">(</span><span style="color:#ae81ff">1000</span><span style="">);</span><span style="">
+</span><span style=""></span><span style="">}</span></code></pre>
+</div></p>
+
+<p>Now unplug your Arduino and plug it back in. Check that the time stays correct.</p>
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+<a class="prev-link" href="/Arduino-Workshops/coding-and-sensors/digital-temperature/">« Previous</a>
+&mdash;
+<a class="next-link" href="/Arduino-Workshops/coding-and-sensors/data-logger/">Next »</a>
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

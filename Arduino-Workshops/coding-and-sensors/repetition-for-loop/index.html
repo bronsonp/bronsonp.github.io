@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Repetition: for loops &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li>#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li>#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li>#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li class="active">#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li>#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li>#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Repetition: for loops</h1>
+  <span class="post-date">Lesson #9&mdash;An easy way to count</span>
+  
+
+<h2 id="theory">Theory</h2>
+
+<p>A <code>for</code> loop is used to count over a sequence of numbers. It is best explained by example.</p>
+
+<h3 id="example-1">Example 1</h3>
+
+<p>This code will say &ldquo;Hello&rdquo; ten times.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">i</span><span style="">;</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">for</span><span style=""> </span><span style="">(</span><span style="">i</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style=""> </span><span style="">i</span><span style=""> </span><span style="color:#f92672">&lt;</span><span style=""> </span><span style="color:#ae81ff">10</span><span style="">;</span><span style=""> </span><span style="">i</span><span style="color:#f92672">++</span><span style="">)</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">println</span><span style="">(</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Hello&#34;</span><span style="">);</span><span style="">
+</span><span style="">  </span><span style="">}</span></code></pre>
+</div></p>
+
+<p>The statement <code>i++</code> is exactly equivalent to <code>i = i + 1</code>. It simply adds one to the value of <code>i</code>. This code runs ten times because the condition is <code>i &lt; 10</code>.</p>
+
+<h3 id="example-2">Example 2</h3>
+
+<p>This code will print the numbers 15, 14, 13, 12, 11 and 10, and also compute the total of all of these numbers.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">i</span><span style="">;</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">total</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">for</span><span style=""> </span><span style="">(</span><span style="">i</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">15</span><span style="">;</span><span style=""> </span><span style="">i</span><span style=""> </span><span style="color:#f92672">&gt;=</span><span style=""> </span><span style="color:#ae81ff">10</span><span style="">;</span><span style=""> </span><span style="">i</span><span style="color:#f92672">--</span><span style="">)</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">println</span><span style="">(</span><span style="">i</span><span style="">);</span><span style="">
+</span><span style="">    </span><span style="">total</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="">total</span><span style=""> </span><span style="color:#f92672">+</span><span style=""> </span><span style="">i</span><span style="">;</span><span style="">
+</span><span style="">  </span><span style="">}</span><span style="">
+</span><span style="">  </span><span style="">Serial</span><span style="">.</span><span style="">print</span><span style="">(</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Total is: &#34;</span><span style="">)</span><span style="">
+</span><span style="">  </span><span style="">Serial</span><span style="">.</span><span style="">println</span><span style="">(</span><span style="">total</span><span style="">);</span></code></pre>
+</div></p>
+
+<p>The statement <code>i--</code> is exactly equivalent to <code>i = i - 1</code>. It subtracts one from the value of <code>i</code>.</p>
+
+<h3 id="the-general-pattern">The general pattern</h3>
+
+<p>The <code>for</code> loop has three parts inside its parentheses and separated by semicolons. These are, in order:</p>
+
+<ol>
+<li>The &ldquo;initialiser&rdquo; gives the starting value of the loop variable (which above is <code>i</code>).</li>
+<li>The &ldquo;condition&rdquo; describes the test that must be satisfied for the loop body to be run. If the condition is false, the loop ends.</li>
+<li>The &ldquo;update statement&rdquo; indicates how to change the loop variable between each iteration of the loop. For example, typically it will add or subtract a certain value.</li>
+</ol>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>Write code that will take the average of 10 measurements of the light sensor and print it to the serial port.</p>
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+<a class="prev-link" href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/">« Previous</a>
+&mdash;
+<a class="next-link" href="/Arduino-Workshops/coding-and-sensors/soil-moisture/">Next »</a>
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

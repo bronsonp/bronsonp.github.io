@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Servo motors &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li>#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li>#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li class="active">#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li>#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li>#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li>#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Servo motors</h1>
+  <span class="post-date">Lesson #7&mdash;Giving your Arduino movement</span>
+  
+
+<h2 id="theory">Theory</h2>
+
+<p>A servo motor is a motor with a built in control system (Fig. 1). It monitors
+its position and attempts to drive the axle to the commanded angle. Typical
+servo motors have approximately 180 degrees of rotational motion. Your Arduino
+can instruct the servo motor to move to (and hold) a particular angle.</p>
+
+
+<figure >
+    
+        <img src="../../images/Servo.jpg" alt="Fig. 1: Inside a small servo motor." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 1: Inside a small servo motor.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>A servo motor has three wires attached:</p>
+
+<ul>
+<li>A 5 V supply,</li>
+<li>A ground, and</li>
+<li>A signal line that must run to a pin that is capable of outputting pulse width modulation (PWM). PWM-capable pins are labelled with a tilde (<code>~</code>).</li>
+</ul>
+
+<p>The two most common colour schemes for these wires are shown below.</p>
+
+
+<figure class="narrow-figure">
+    
+        <img src="../../images/Servo-pinout.png" alt="Fig. 2: Servo wire colour codes." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 2: Servo wire colour codes.
+        <a href="http://www.fatlion.com/sailplanes/servos.html"> 
+            Images by Randy Carr.
+        </a> 
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="wiring">Wiring</h2>
+
+
+<figure >
+    
+        <img src="../../images/Servo_schem.svg" alt="Fig. 1: Schematic layout for the servo circuit." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 1: Schematic layout for the servo circuit.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="../../images/Servo_bb.svg" alt="Fig. 2: Breadboard layout for the servo circuit." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 2: Breadboard layout for the servo circuit.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<h2 id="code">Code</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">#include</span><span style=""> </span><span style="color:#75715e">&lt;Servo.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="">
+</span><span style=""></span><span style="">Servo</span><span style=""> </span><span style="">servo1</span><span style="">;</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">setup</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your setup code here, to run once:
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Which pin is connected to the servo data line?
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">servo1</span><span style="">.</span><span style="">attach</span><span style="">(</span><span style="color:#ae81ff">5</span><span style="">);</span><span style="">
+</span><span style=""></span><span style="">}</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your main code here, to run repeatedly:
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">angle</span><span style="">;</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Set the angle of the servo
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">angle</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">45</span><span style="">;</span><span style=""> </span><span style="color:#75715e">// degrees
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Send the command to the servo
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">servo1</span><span style="">.</span><span style="">write</span><span style="">(</span><span style="">angle</span><span style="">);</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Wait a bit
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">delay</span><span style="">(</span><span style="color:#ae81ff">1000</span><span style="">);</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Set a new angle 
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">angle</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">135</span><span style="">;</span><span style=""> </span><span style="color:#75715e">// degrees
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Send the command to the servo
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">servo1</span><span style="">.</span><span style="">write</span><span style="">(</span><span style="">angle</span><span style="">);</span><span style="">
+</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Wait a bit
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">delay</span><span style="">(</span><span style="color:#ae81ff">1000</span><span style="">);</span><span style="">
+</span><span style=""></span><span style="">}</span></code></pre>
+</div>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>Modify the above program so that the servo position is proportional to the
+analog signal measured from the LDR.</p>
+
+<p>Imagine that your servo is connected to an instrument dial (like a car
+speedometer). Light intensity will be indicated by rotating the &ldquo;needle.&rdquo;</p>
+
+<h2 id="topics-for-workshop-discussion">Topics for workshop discussion</h2>
+
+<ul>
+<li>You can use a linear equation to relate analog value to rotational angle, e.g. \(y=mx+c\) where you choose appropriate values of \(m\) and \(c\).</li>
+<li>Servo motors are useful in small robotics applications, e.g. to move joints. There are many examples of 3D-printable servo-driven machines available online.</li>
+</ul>
+
+<h2 id="technical-aside-on-this-circuit">Technical aside on this circuit</h2>
+
+<p>This circuit powers the servo motor from the 5 V line on the Arduino. If you have a USB cable connected to your Arduino, the 5 V line is derived from the USB controller in the computer, and will supply up to 500 mA (assuming a USB 2.0 socket). If you have multiple motors or a larger servo, this might not be appropriate and you would need a dedicated power supply.</p>
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+<a class="prev-link" href="/Arduino-Workshops/coding-and-sensors/decision-making/">« Previous</a>
+&mdash;
+<a class="next-link" href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/">Next »</a>
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

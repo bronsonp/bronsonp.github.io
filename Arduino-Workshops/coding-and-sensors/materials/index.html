@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Parts and how to buy them &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li class="active">#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li>#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li>#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li>#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li>#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li>#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Parts and how to buy them</h1>
+  <span class="post-date">Lesson #1&mdash;Equipment used here</span>
+  
+
+<h2 id="list-of-equipment">List of equipment</h2>
+
+<p>The following items are provided as part of this workshop:</p>
+
+<ul>
+<li>Arduino Uno</li>
+<li>SG90 servo motor</li>
+<li>5528 light dependent resistor (5mm)</li>
+<li>Red light emitting diode (5mm)</li>
+<li>DS18B20 temperature sensor</li>
+<li>FW1S soil moisture probe</li>
+<li>XD-05 data logging shield</li>
+<li>512MB SD card</li>
+<li>Resistors: 150 ohm, 4.7k, and 10k</li>
+<li>Electronics breadboard and wire.</li>
+</ul>
+
+<h2 id="how-to-buy-these-items">How to buy these items</h2>
+
+<ul>
+<li>All the electronics can be purchased very cheaply from places like <a href="https://www.aliexpress.com/">AliExpress</a> or <a href="https://www.ebay.com.au/">eBay</a>.</li>
+<li>You can also buy brand name equivalents from local electronics stores.</li>
+</ul>
+
+<h2 id="a-note-about-software">A note about software</h2>
+
+<ul>
+<li>Download the <a href="https://www.arduino.cc/en/Main/Software">Arduino IDE</a>. I recommend the Windows regular IDE and not the online web editor.</li>
+<li>You will need to install the following libraries. In Arduino, go to Sketch &ndash;&gt; Include Library &ndash;&gt; Manage Libraries. Type each name below into the search box and click Install for each:
+
+<ul>
+<li>SdFat (by Bill Greiman)</li>
+<li>OneWire (by Jim Studt <em>et al.</em>)</li>
+<li>DallasTemperature (by Miles Burton <em>et al.</em>)</li>
+<li>RTCLib by NeiroN (JeeLabs)</li>
+</ul></li>
+</ul>
+
+<h2 id="encouraging-reuse">Encouraging reuse</h2>
+
+<p>I have prepared these materials with the hope that you will use them. All content is licensed under a licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+<p>The breadboard images were drawn using <a href="http://fritzing.org/">Fritzing</a>. I recommend this software if you want to prepare similar images yourself.</p>
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+
+
+<a class="next-link" href="/Arduino-Workshops/coding-and-sensors/warmup/">Next »</a>
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

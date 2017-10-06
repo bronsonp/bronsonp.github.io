@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Hysteresis &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li>#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li>#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li>#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li>#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li>#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li class="active">#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Hysteresis</h1>
+  <span class="post-date">Lesson #14&mdash;Non-ideal sensor properties</span>
+  
+
+<h2 id="sensor-theory">Sensor theory</h2>
+
+<p>Will your sensor always return the same value for the same stimulus? Does a
+measurement depend upon previous measurements?</p>
+
+<p>Many real sensors exhibit the property of <em>hysteresis</em>, meaning that the measured
+value is dependent upon the history.</p>
+
+<p>The light dependent resistor (LDR) circuit shown in Figs. 1&nbsp;&ndash;&nbsp;3 is a good case study in
+exploring the properties of a very cheap sensor.</p>
+
+
+<figure >
+    
+        <img src="../../images/LDR_Calibration_schem.svg" alt="Fig. 1: Schematic layout for LDR circuit." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 1: Schematic layout for LDR circuit.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="../../images/LDR_Calibration_bb.svg" alt="Fig. 2: Breadboard layout for LDR circuit." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 2: Breadboard layout for LDR circuit.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+
+<figure >
+    
+        <img src="../../images/LED-and-LDR.jpg" alt="Fig. 3: Position the LED and LDR next to each other so that the LED light will shine upon the LDR." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 3: Position the LED and LDR next to each other so that the LED light will shine upon the LDR.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>We will use the LED as a light source to vary the light incident upon the LDR.</p>
+
+<p>Once you have the position right, cover the breadboard with some paper or fabric
+to dampen the ambient light. An alternative would be to use cling wrap and alfoil (for
+electrical insulation and to block the light, respectively).</p>
+
+<h2 id="electronics-theory">Electronics theory</h2>
+
+<p>The Arduino cannot output an analog value directly. However, it can approximate
+an analog signal by rapidly turning a voltage on and off (Fig. 4). Varying the
+duty cycle in this manner is called <em>pulse width modulation</em>.</p>
+
+
+<figure class="narrow-figure">
+    
+        <img src="../../images/PWM.svg" alt="Fig. 4: Pulse width modulation" />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 4: Pulse width modulation
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+<p>Pulse width modulation in Arduinos requires a <em>duty cycle</em> that is defined to
+lie between 0 and 255. 0 means that the output is completely off and 255 means
+that it is completely on. The significance of 0..255 is that there it gives 256
+possible states, and \(256 = 2^8\) so we see that PWM ratios are 8 bit
+quantities.</p>
+
+<p>Not all Arduino pins are capable of PWM. The PWM-capable pins are labelled with
+a tilde (<code>~</code>) on the circuit board.</p>
+
+<h2 id="code">Code</h2>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">setup</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your setup code here, to run once:
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Set up pin 3 as an output.
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">pinMode</span><span style="">(</span><span style="color:#ae81ff">3</span><span style="">,</span><span style=""> </span><span style="">OUTPUT</span><span style="">);</span><span style="">
+</span><span style="">  
+</span><span style="">  </span><span style="color:#75715e">// Set the baud rate
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">Serial</span><span style="">.</span><span style="">begin</span><span style="">(</span><span style="color:#ae81ff">9600</span><span style="">);</span><span style="">
+</span><span style=""></span><span style="">}</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your main code here, to run repeatedly:
+</span><span style="color:#75715e"></span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// Sweep through the range of possible PWM duty cycles from 
+</span><span style="color:#75715e"></span><span style="">  </span><span style="color:#75715e">// minimal brightness (0) to maximum brightness (255).
+</span><span style="color:#75715e"></span><span style="">  </span><span style="color:#66d9ef">int</span><span style=""> </span><span style="">i</span><span style="">;</span><span style="">
+</span><span style="">  </span><span style="color:#66d9ef">for</span><span style=""> </span><span style="">(</span><span style="">i</span><span style=""> </span><span style="color:#f92672">=</span><span style=""> </span><span style="color:#ae81ff">0</span><span style="">;</span><span style=""> </span><span style="">i</span><span style=""> </span><span style="color:#f92672">&lt;=</span><span style=""> </span><span style="color:#ae81ff">255</span><span style="">;</span><span style=""> </span><span style="">i</span><span style="color:#f92672">++</span><span style="">)</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">    </span><span style="">analogWrite</span><span style="">(</span><span style="color:#ae81ff">3</span><span style="">,</span><span style=""> </span><span style="">i</span><span style="">);</span><span style="">
+</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">print</span><span style="">(</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Brightness: &#34;</span><span style="">);</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">print</span><span style="">(</span><span style="">i</span><span style=""> </span><span style="color:#f92672">/</span><span style=""> </span><span style="color:#ae81ff">2.55</span><span style="">,</span><span style=""> </span><span style="color:#ae81ff">6</span><span style="">);</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">print</span><span style="">(</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;%&#34;</span><span style="">);</span><span style="">
+</span><span style="">    </span><span style="">Serial</span><span style="">.</span><span style="">println</span><span style="">();</span><span style="">
+</span><span style="">  </span><span style="">}</span><span style="">
+</span><span style=""></span><span style="">}</span></code></pre>
+</div>
+
+<h2 id="exercise">Exercise</h2>
+
+<p>An SD card is not the only way to load data from an Arduino system into Excel.
+You can also copy and paste data directly from the serial monitor.</p>
+
+<p>Extend the above sample code to achieve the following:</p>
+
+<ol>
+<li>Sweep through a range of LED brightnesses from minimal brightness to maximum brightness.</li>
+<li>Set the brightness on the LED.</li>
+<li>Read the analog value from the LDR sensor, and convert it to a voltage.</li>
+<li>Print out the brightness and measured voltage as a space-separated list (see below).</li>
+</ol>
+
+<p>Use the following data format for easy import into Excel:</p>
+
+<pre><code>0.00% 2.84
+1.96% 2.95
+3.92% 3.03
+5.88% 3.12
+...
+</code></pre>
+
+<h2 id="data-analysis">Data analysis</h2>
+
+<ol>
+<li>Copy the list of values from the Arduino Serial Monitor.</li>
+<li>Open Microsoft Excel.</li>
+<li>Select the cell A1 (or where you would like to paste your data).</li>
+<li>On the Home tab, click the arrow underneath Paste, and choose &ldquo;Use Text Import Wizard&rdquo;.</li>
+<li>Click through the Text Import Wizard to bring the data into Excel.</li>
+<li>Produce a scatterplot of voltage vs brightness.</li>
+</ol>
+
+<p>You should end up with a result that looks like Fig. 5, below.</p>
+
+<p>
+<figure >
+    
+        <img src="../../images/Hysteresis.svg" alt="Fig. 5: Hysteresis effect using LDR. Arrows indicate the direction in which the brightness is being varied." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 5: Hysteresis effect using LDR. Arrows indicate the direction in which the brightness is being varied.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+</p>
+
+<h2 id="topics-for-workshop-discussion">Topics for workshop discussion</h2>
+
+<ul>
+<li>Hysteresis indicates that the stimulus is changing too quickly to be measured by the sensor. Slow down the speed at which it changes to prevent this issue.</li>
+<li>The voltage is not the best quantity to report. The sensor actually modulates its resistance. We can calculate the resistance using $$V_{A0} = 5\times\frac{R_3}{R_2 + R_3},$$ where \(R_2\) is the resistance of the LDR and \(R_3\) is the fixed load resistance (as per Fig. 1). <br />Solve for \(R_2\) to calculate the actual sensor response.</li>
+<li>A criticism of this experiment is that we are assuming linearity in the diode brightness. A LED&rsquo;s light output is (very close to) proportional to current. The current is \(I = (5-V_{diode})/R_1\), and \(V_{diode}\) is approximately independent of \(I\). A better solution would be to measure the current flowing through the diode and use that as the independent variable in the analysis. Measure the current by measuring the voltage across the load resistor and using Ohm&rsquo;s law.</li>
+</ul>
+
+<h2 id="extension-exercise">Extension Exercise</h2>
+
+<p>Discover the functional form of LDR resistance vs brightness. What shape trendline best fits the data? Can you find a transformation that makes it linear?</p>
+
+<p><em>Answer:</em> The approximate functional form of the LDR response is that resistance is
+inversely proportional to the light intensity. Therefore a plot of 1/Resistance
+vs brightness is approximately linear (Fig. 6).</p>
+
+
+<figure >
+    
+        <img src="../../images/LDR-Nonlinearity.svg" alt="Fig. 6: LDR sensor response. These data were captured with a 50 ms delay between each value to minimise hysteresis." />
+    
+    
+    <figcaption>
+        <p>
+        Fig. 6: LDR sensor response. These data were captured with a 50 ms delay between each value to minimise hysteresis.
+        
+            
+        
+        </p> 
+    </figcaption>
+    
+</figure>
+
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+<a class="prev-link" href="/Arduino-Workshops/coding-and-sensors/data-logger/">« Previous</a>
+
+
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>

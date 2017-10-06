@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-au" lang="en-au">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-45951032-3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-45951032-3');
+  </script>
+  
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.29" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>Warmup &middot; Coding and sensors using Arduinos</title>
+
+  
+  <link rel="stylesheet" href="/Arduino-Workshops/css/print.css" media="print">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/poole.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/syntax.css">
+  <link rel="stylesheet" href="/Arduino-Workshops/css/hyde.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="Coding and sensors using Arduinos" />
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      <a href="/Arduino-Workshops/"><h1>Coding and sensors using Arduinos</h1></a>
+      <p class="lead">
+      An Arduino workshop presented by Bronson Philippa at James Cook University.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      
+      <li>
+          <a href="/Arduino-Workshops/"> About </a>
+          
+        </li><li>
+          <a href="/Arduino-Workshops/coding-and-sensors/"> Coding and Sensors </a>
+          
+          <ul class="sidebar-nav-sub">
+            
+            <li>#1 <a href="/Arduino-Workshops/coding-and-sensors/materials/" class="nav-sub"> Parts and how to buy them</a></li>
+            
+            <li class="active">#2 <a href="/Arduino-Workshops/coding-and-sensors/warmup/" class="nav-sub"> Warmup</a></li>
+            
+            <li>#3 <a href="/Arduino-Workshops/coding-and-sensors/external-led/" class="nav-sub"> Driving an external LED</a></li>
+            
+            <li>#4 <a href="/Arduino-Workshops/coding-and-sensors/serial-output/" class="nav-sub"> Serial output</a></li>
+            
+            <li>#5 <a href="/Arduino-Workshops/coding-and-sensors/sensing-the-light/" class="nav-sub"> Sensing the light</a></li>
+            
+            <li>#6 <a href="/Arduino-Workshops/coding-and-sensors/decision-making/" class="nav-sub"> Decision making</a></li>
+            
+            <li>#7 <a href="/Arduino-Workshops/coding-and-sensors/servo-motors/" class="nav-sub"> Servo motors</a></li>
+            
+            <li>#8 <a href="/Arduino-Workshops/coding-and-sensors/repetition-while-loop/" class="nav-sub"> Repetition: while loops</a></li>
+            
+            <li>#9 <a href="/Arduino-Workshops/coding-and-sensors/repetition-for-loop/" class="nav-sub"> Repetition: for loops</a></li>
+            
+            <li>#10 <a href="/Arduino-Workshops/coding-and-sensors/soil-moisture/" class="nav-sub"> Soil moisture sensing</a></li>
+            
+            <li>#11 <a href="/Arduino-Workshops/coding-and-sensors/digital-temperature/" class="nav-sub"> Digital temperature sensors</a></li>
+            
+            <li>#12 <a href="/Arduino-Workshops/coding-and-sensors/real-time-clock/" class="nav-sub"> Real time clocks</a></li>
+            
+            <li>#13 <a href="/Arduino-Workshops/coding-and-sensors/data-logger/" class="nav-sub"> Data logging</a></li>
+            
+            <li>#14 <a href="/Arduino-Workshops/coding-and-sensors/hysteresis/" class="nav-sub"> Hysteresis</a></li>
+            
+          </ul>
+          
+        </li>
+    </ul>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>Warmup</h1>
+  <span class="post-date">Lesson #2&mdash;A warm welcome to the Arduino world</span>
+  
+
+<h2 id="theory">Theory</h2>
+
+<p>Look around the edges of your Arduino board and you will see a set of <em>pins</em>
+labelled with numbers 0, 1, 2, and so on. These pins are used to connect to
+external devices such as sensors.</p>
+
+<p>Some pins also connect to devices built-in to the board. Arduino Uno boards have
+a built-in light emitting diode (LED) on pin 13. To turn the LED on, you will
+instruct the Arduino to energise pin 13 to five volts (with respect to the GND
+pin). To turn the LED off, you will instruct the Arduino to reduce the voltage
+on pin 13 to zero volts.</p>
+
+<h2 id="set-up">Set up</h2>
+
+<p>The link between an Arduino and your computer is a <em>serial port</em>. On Windows,
+serial ports are named using the numbering scheme &ldquo;COM1&rdquo;, &ldquo;COM2&rdquo;, &ldquo;COM3&rdquo;, and so
+on.</p>
+
+<p>When you connect the Arduino via the USB port, it will be allocated a serial
+port number. For historical reasons, some of the numbers will already be taken,
+so your Arduino may be allocated something like COM3 or COM4 or a higher number.</p>
+
+<p>To use the Arduino software, you must tell it which serial port to use. You can
+identify the exact COM port using the Device Manager control panel, but in
+practice the highest numbered COM port is almost certainly the right choice.</p>
+
+<ol>
+<li>Plug in your Arduino board and start up the program called &ldquo;Arduino&rdquo;.</li>
+<li>On the <em>Tools</em> menu, open the <em>Port</em> submenu, and select the highest numbered COM port.</li>
+</ol>
+
+<h2 id="code">Code</h2>
+
+<p>The Arduino computer program is an <em>integrated development environment</em> (IDE).
+Type the following code into the Arduino IDE, replacing the existing
+content.</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">setup</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your setup code here, to run once:
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">pinMode</span><span style="">(</span><span style="color:#ae81ff">13</span><span style="">,</span><span style=""> </span><span style="">OUTPUT</span><span style="">);</span><span style="">
+</span><span style=""></span><span style="">}</span><span style="">
+</span><span style="">
+</span><span style=""></span><span style="color:#66d9ef">void</span><span style=""> </span><span style="color:#a6e22e">loop</span><span style="">()</span><span style=""> </span><span style="">{</span><span style="">
+</span><span style="">  </span><span style="color:#75715e">// put your main code here, to run repeatedly:
+</span><span style="color:#75715e"></span><span style="">  
+</span><span style="">  </span><span style="color:#75715e">// Set pin 13 to have a high voltage level (5 volts)
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">digitalWrite</span><span style="">(</span><span style="color:#ae81ff">13</span><span style="">,</span><span style=""> </span><span style="">HIGH</span><span style="">);</span><span style="">
+</span><span style="">  
+</span><span style="">  </span><span style="color:#75715e">// wait for 1000 milliseconds
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">delay</span><span style="">(</span><span style="color:#ae81ff">1000</span><span style="">);</span><span style="">
+</span><span style="">  
+</span><span style="">  </span><span style="color:#75715e">// Set pin 13 to have a low voltage level (0 volts)
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">digitalWrite</span><span style="">(</span><span style="color:#ae81ff">13</span><span style="">,</span><span style=""> </span><span style="">LOW</span><span style="">);</span><span style="">
+</span><span style="">  
+</span><span style="">  </span><span style="color:#75715e">// wait for 1000 milliseconds
+</span><span style="color:#75715e"></span><span style="">  </span><span style="">delay</span><span style="">(</span><span style="color:#ae81ff">1000</span><span style="">);</span><span style="">               
+</span><span style=""></span><span style="">}</span></code></pre>
+</div>
+
+<p>Create a folder on your computer for this workshop, and save your Arduino file
+into that folder under the name <strong>lesson2</strong>.</p>
+
+<h2 id="upload-the-code-to-the-board">Upload the code to the board</h2>
+
+<ol>
+<li>Use the &ldquo;upload&rdquo; button on the Arduino toolbar to load your program onto the board.</li>
+</ol>
+
+<h2 id="topics-for-workshop-discussion">Topics for workshop discussion</h2>
+
+<ul>
+<li>A <em>comment</em> begins with <code>//</code> and is ignored by Arduino. Comments are for human readers.</li>
+<li>There are two <em>functions</em> called <code>setup</code> and <code>loop</code>.</li>
+<li>Within each function, instructions are read from top to bottom.</li>
+<li>If the Arduino is to generate a voltage on a pin, that pin must be set as an <code>OUTPUT</code> in the <code>setup</code> function.</li>
+</ul>
+
+<h2 id="exercise">Exercise</h2>
+
+<ol>
+<li>Change the speed at which the light flashes.</li>
+<li>Implement a Morse code-like sequence with long and short flashes, e.g. &ldquo;long long short&rdquo;.</li>
+</ol>
+
+</div>
+
+<hr />
+<p class="prev-and-next-links">
+<a class="prev-link" href="/Arduino-Workshops/coding-and-sensors/materials/">« Previous</a>
+&mdash;
+<a class="next-link" href="/Arduino-Workshops/coding-and-sensors/external-led/">Next »</a>
+</p>
+
+<p></p>
+<p class="small">
+  This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+  For comments or corrections, please contact <a href="mailto:bronson.philippa@jcu.edu.au">bronson.philippa@jcu.edu.au</a>.
+</p>
+    </div>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </body>
+</html>
