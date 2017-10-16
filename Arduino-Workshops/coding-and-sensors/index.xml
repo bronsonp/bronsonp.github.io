@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Coding and Sensors on Coding and sensors using Arduinos</title>
-    <link>/Arduino-Workshops/coding-and-sensors/</link>
+    <link>/coding-and-sensors/</link>
     <description>Recent content in Coding and Sensors on Coding and sensors using Arduinos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-au</language>
     
-	<atom:link href="/Arduino-Workshops/coding-and-sensors/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/coding-and-sensors/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Parts and how to buy them</title>
-      <link>/Arduino-Workshops/coding-and-sensors/materials/</link>
+      <link>/coding-and-sensors/materials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/materials/</guid>
+      <guid>/coding-and-sensors/materials/</guid>
       <description>List of equipment The following items are provided as part of this workshop:
  Arduino Uno SG90 servo motor 5528 light dependent resistor (5mm) Red light emitting diode (5mm) DS18B20 temperature sensor FW1S soil moisture probe XD-05 data logging shield 512MB SD card Resistors: 150 ohm, 4.7k, and 10k Electronics breadboard and wire.  How to buy these items  All the electronics can be purchased very cheaply from places like AliExpress or eBay.</description>
     </item>
     
     <item>
       <title>Warmup</title>
-      <link>/Arduino-Workshops/coding-and-sensors/warmup/</link>
+      <link>/coding-and-sensors/warmup/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/warmup/</guid>
+      <guid>/coding-and-sensors/warmup/</guid>
       <description>Theory Look around the edges of your Arduino board and you will see a set of pins labelled with numbers 0, 1, 2, and so on. These pins are used to connect to external devices such as sensors.
 Some pins also connect to devices built-in to the board. Arduino Uno boards have a built-in light emitting diode (LED) on pin 13. To turn the LED on, you will instruct the Arduino to energise pin 13 to five volts (with respect to the GND pin).</description>
     </item>
     
     <item>
       <title>Driving an external LED</title>
-      <link>/Arduino-Workshops/coding-and-sensors/external-led/</link>
+      <link>/coding-and-sensors/external-led/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/external-led/</guid>
+      <guid>/coding-and-sensors/external-led/</guid>
       <description>Theory A light emitting diode (LED) must have its electric current regulated, otherwise it will be damaged. However, the Arduino lacks a current limited output. Instead, we use a resistor to provide current limiting.
 Wiring The images below are two views of the same circuit. The schematic illustrates the design conceptually, whereas the breadboard layout shows how to implement it.
   Fig. 1: Schematic layout for LED circuit.     Fig.</description>
@@ -43,30 +43,30 @@ Wiring The images below are two views of the same circuit. The schematic illustr
     
     <item>
       <title>Serial output</title>
-      <link>/Arduino-Workshops/coding-and-sensors/serial-output/</link>
+      <link>/coding-and-sensors/serial-output/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/serial-output/</guid>
+      <guid>/coding-and-sensors/serial-output/</guid>
       <description>Theory The baud rate is the speed of a communication system. Mathematically, a baud rate is the number of symbols per second that are transmitted. We use a binary code, so a &amp;ldquo;symbol&amp;rdquo; is a 1 or a 0.
 A common serial baud rate is 9600 symbols per second. Using typical settings, a letter will consume 10 symbols, resulting in an effective speed of 960 letters per second. (There are 8 bits in a byte, plus the serial protocol uses one &amp;ldquo;start bit&amp;rdquo; to signal the beginning of a byte and one &amp;ldquo;stop bit&amp;rdquo; to mark the end of a byte, so 8+1+1=10 symbols per letter.</description>
     </item>
     
     <item>
       <title>Sensing the light</title>
-      <link>/Arduino-Workshops/coding-and-sensors/sensing-the-light/</link>
+      <link>/coding-and-sensors/sensing-the-light/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/sensing-the-light/</guid>
+      <guid>/coding-and-sensors/sensing-the-light/</guid>
       <description>Electronics theory   Fig. 1: Analog signals make take on arbitrary values, whereas digital signals are restricted to just two states.   The Arduino contains a voltage meter called an analog-to-digital converter. This instrument measures the voltage between an analog pin (A0 .. A5) and ground.
 The analog-to-digital converter does not work in units of volts. Instead it uses integers in the range of 0 to 1023. The significance of this range is that the Arduino uses 10 binary digits to represent analog values, and there are 1024 unique combinations of 10 binary digits (\(2^{10} = 1024\)).</description>
     </item>
     
     <item>
       <title>Decision making</title>
-      <link>/Arduino-Workshops/coding-and-sensors/decision-making/</link>
+      <link>/coding-and-sensors/decision-making/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/decision-making/</guid>
+      <guid>/coding-and-sensors/decision-making/</guid>
       <description>Programming theory In programming, an if statement is a construct that causes the program to act differently depending upon some condition. We already saw this in Lesson 3:
 if(counter==15){Serial.println(&amp;#34;Resetting ...&amp;#34;);counter=0;}  Here, the code inside curly braces is only run if counter is equal to 15.
 Common comparisons are:
@@ -75,20 +75,20 @@ Common comparisons are:
     
     <item>
       <title>Servo motors</title>
-      <link>/Arduino-Workshops/coding-and-sensors/servo-motors/</link>
+      <link>/coding-and-sensors/servo-motors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/servo-motors/</guid>
+      <guid>/coding-and-sensors/servo-motors/</guid>
       <description>Theory A servo motor is a motor with a built in control system (Fig. 1). It monitors its position and attempts to drive the axle to the commanded angle. Typical servo motors have approximately 180 degrees of rotational motion. Your Arduino can instruct the servo motor to move to (and hold) a particular angle.
   Fig. 1: Inside a small servo motor.   A servo motor has three wires attached:</description>
     </item>
     
     <item>
       <title>Repetition: while loops</title>
-      <link>/Arduino-Workshops/coding-and-sensors/repetition-while-loop/</link>
+      <link>/coding-and-sensors/repetition-while-loop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/repetition-while-loop/</guid>
+      <guid>/coding-and-sensors/repetition-while-loop/</guid>
       <description>Theory Imagine the following code that gradually sweeps a servo motor through its range of motion.
 voidloop(){servo1.write(0);delay(50);servo1.write(10);delay(50);servo1.write(20);delay(50);servo1.write(30);delay(50);servo1.write(40);delay(50);// ...}  This code is very repetitive. Surely there is a better way!
 Behold, the while loop:
@@ -99,10 +99,10 @@ A while loop does the following things:
     
     <item>
       <title>Repetition: for loops</title>
-      <link>/Arduino-Workshops/coding-and-sensors/repetition-for-loop/</link>
+      <link>/coding-and-sensors/repetition-for-loop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/repetition-for-loop/</guid>
+      <guid>/coding-and-sensors/repetition-for-loop/</guid>
       <description>Theory A for loop is used to count over a sequence of numbers. It is best explained by example.
 Example 1 This code will say &amp;ldquo;Hello&amp;rdquo; ten times. voidloop(){inti;for(i=0;i&amp;lt;10;i++){Serial.println(&amp;#34;Hello&amp;#34;);} 
 The statement i++ is exactly equivalent to i = i + 1. It simply adds one to the value of i. This code runs ten times because the condition is i &amp;lt; 10.
@@ -111,10 +111,10 @@ Example 2 This code will print the numbers 15, 14, 13, 12, 11 and 10, and also c
     
     <item>
       <title>Soil moisture sensing</title>
-      <link>/Arduino-Workshops/coding-and-sensors/soil-moisture/</link>
+      <link>/coding-and-sensors/soil-moisture/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/soil-moisture/</guid>
+      <guid>/coding-and-sensors/soil-moisture/</guid>
       <description>Theory The simplest way to measure soil moisture is by measuring electrical conductivity. The greater the moisture content, the greater the conductivity.
 The provided soil moisture sensors have a spike that can be driven into the ground and a control board that measures the conductivity and outputs an analog voltage signal.
 The control board pinout is:
@@ -123,10 +123,10 @@ The control board pinout is:
     
     <item>
       <title>Digital temperature sensors</title>
-      <link>/Arduino-Workshops/coding-and-sensors/digital-temperature/</link>
+      <link>/coding-and-sensors/digital-temperature/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/digital-temperature/</guid>
+      <guid>/coding-and-sensors/digital-temperature/</guid>
       <description>Fig. 1: DS18B20 pinout.
   Theory The Dallas DS18B20 is a low cost temperature sensor with a digital interface.
 It has three pins:
@@ -136,30 +136,30 @@ Wiring   Fig.</description>
     
     <item>
       <title>Real time clocks</title>
-      <link>/Arduino-Workshops/coding-and-sensors/real-time-clock/</link>
+      <link>/coding-and-sensors/real-time-clock/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/real-time-clock/</guid>
+      <guid>/coding-and-sensors/real-time-clock/</guid>
       <description>Theory A &amp;ldquo;real time clock&amp;rdquo; is a clock that keeps the date and time. It is essential for data loggers where measurements need to be logged against the time of day.
 Real time clocks are typically powered by coin cell batteries, allowing the time to be preserved even if the main power is removed. Your Arduino will stop, but the clock will keep ticking, and when the power comes back, your Arduino will be able to read the correct date and time.</description>
     </item>
     
     <item>
       <title>Data logging</title>
-      <link>/Arduino-Workshops/coding-and-sensors/data-logger/</link>
+      <link>/coding-and-sensors/data-logger/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/data-logger/</guid>
+      <guid>/coding-and-sensors/data-logger/</guid>
       <description>Theory A data logger enables long running experiments. Your Arduino can periodically read from the sensors and save the results to an SD card. When you are done, you can connect the SD card to a computer and open the file as a spreadsheet for analysis.
 Code #include&amp;lt;SdFat.h&amp;gt;#include&amp;lt;RTClib.h&amp;gt;#include&amp;lt;Wire.h&amp;gt;DS1307rtc;SdFatsd;SdFilefile;voidsetup(){// Set the serial baud rate Serial.begin(9600);// Initialise the real time clock Wire.begin();rtc.begin();// Try to communicate with an SD card if(sd.begin()){Serial.println(&amp;#34;Initialised SD card.</description>
     </item>
     
     <item>
       <title>Hysteresis</title>
-      <link>/Arduino-Workshops/coding-and-sensors/hysteresis/</link>
+      <link>/coding-and-sensors/hysteresis/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/Arduino-Workshops/coding-and-sensors/hysteresis/</guid>
+      <guid>/coding-and-sensors/hysteresis/</guid>
       <description>Sensor theory Will your sensor always return the same value for the same stimulus? Does a measurement depend upon previous measurements?
 Many real sensors exhibit the property of hysteresis, meaning that the measured value is dependent upon the history.
 The light dependent resistor (LDR) circuit shown in Figs. 1&amp;nbsp;&amp;ndash;&amp;nbsp;3 is a good case study in exploring the properties of a very cheap sensor.
